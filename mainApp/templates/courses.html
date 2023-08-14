@@ -1,0 +1,175 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>NNU Digital University | Courses Page</title>
+{% endblock %}
+
+{% block body %}
+<div class="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+        <nav class="navbar navbar-expand-lg">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="/About/">About us</a>
+              </li>
+              <li class="nav-item">
+                  <a class="active">Courses</a>
+                  <ul class="sub-menu" style="width: max-content;">
+                    {% for i in Maincategory %}
+                    <li><a href="/courses/{{i.id}}" class="text-left" href="#">{{i.name}}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              <li class="nav-item">
+                <a href="/event/">Events</a>
+              </li>
+              <li class="nav-item">
+                <a href="/teachers/">Our teachers</a>
+              </li>
+              <li class="nav-item">
+                <a href="/blog/">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a href="/contact/">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a href="/exam/">Exam</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="col-1">
+        <div class="right-icon text-right">
+          <ul>
+            <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="pt-15">
+          <ul>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item mt-0">
+              <a class="nav-link blue dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                {{request.user}}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="row ml-2">
+                  <li><a class="dropdown-item" href="/profile/">Profile</a></li>
+                </div>
+                <div class="row ml-2">
+                  <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                </div>
+              </ul>
+            </li>
+            {% else %}
+            <li><a href="/login/" class="btn background text-light" id="search" style="font-weight: 600;">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section id="page-banner" class="pt-105 pb-110 bg_cover" data-overlay="8"
+  style="background-image: url('{%static 'images/page-banner-1.jpg' %}')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-banner-cont">
+          <h2>Our Courses</h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Our Courses</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="course-part" class="pt-115 pb-120 gray-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="section-title pb-45">
+          <h5><a href="/courses/{{mc}}/{{i.name}}/" class="blue">{{i.name}}</a></h5>
+          <h4 class="mt-2"> Latest {{i.name}} Videos </h4>
+        </div>
+      </div>
+    </div>
+    <div class="row course-slied mt-30">
+      {% for i in Videos %}
+      <div class="col-lg-4">
+        <div class="singel-course">
+          <div class="thum">
+            <div class="image">
+              {% if i.video %}
+              <a href="/singlevideo/{{i.id}}"><video src="{{i.video.url}}" style="width: 100%; height: 211px"
+                  class="card-img-top" alt="..."></a>
+              {% else %}
+              <a href="/singlevideo/{{i.id}}"><video src="{% static 'images/noimagep.png' %}" height="300px"
+                  width="300px"></a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="row pl-3">
+            <div class="col-4">
+              <p class=" text-success text-center card-title"
+                style="border: 1px solid black;border-radius: 5px; font-weight:400;">{{i.subcategory}}</p>
+            </div>
+            <div class="col-8">
+              <p class=" orange text-uppercase card-title w-100">{{i.maincategory}}</p>
+            </div>
+          </div>
+          <div class="cont">
+            <a href="courses-singel.html">
+              <h4>{{i.name}}</h4>
+            </a>
+            <div class="course-teacher">
+              <div class="thum">
+                {% if User.pic %}
+                <a href="#"><img src="{{User.pic.url}}" alt="teacher"></a>
+                {% else %}
+                <img src="{% static 'images/noimage.jpg' %}" class="w-100">
+                {% endif %}
+              </div>
+              <div class="name">
+                <a href="#">
+                  <h6>{{i.admin}}</h6>
+                </a>
+              </div>
+              <div class="admin">
+                <ul>
+                  <li><a href="/singlevideo/{{i.id}}" class="btn background text-light ">Read More</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

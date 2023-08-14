@@ -1,0 +1,1241 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %}
+  <title>NNU Digital University | Home</title>
+  {% endblock %}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png">
+  <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'css/jquery.nice-number.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/default.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  <link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/ion.rangeSlider.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/ion.rangeSlider.skinFlat.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'scss/main.scss' %}">
+</head>
+
+<body style="overflow-x:hidden;">
+  <header id="header-part">
+
+    <div class="header-top d-none d-lg-block">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="header-contact text-lg-left text-center">
+              <ul>
+                <li><img src="{% static 'images/all-icon/map.png' %}" alt="icon"><span>127/5 Mark street, New
+                    york</span></li>
+                <li><img src="{% static 'images/all-icon/email.png' %}" alt="icon"><span>info@yourmail.com</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="header-opening-time text-lg-right text-center">
+              <p>Opening Hours : Monday to Saturay - 8 Am to 5 Pm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-logo-support pt-30 pb-30">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4">
+            <div class="dropdown btn background">
+              <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Courses</a>
+              <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+                aria-labelledby="offcanvasWithBothOptionsLabel">
+                <div class="offcanvas-header" style="background-color: grey;">
+                  <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Courses</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  {% for i in Maincategory %}
+                  <a href="/courses/{{i.id}}" class="dropdown-item text-dark text-left" href="#">{{i.name}}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-8">
+            <div class="support-button float-right d-none d-md-block">
+              <div class="support float-left">
+                <div class="icon">
+                  <img src="{% static 'images/all-icon/support.png' %}" alt="icon">
+                </div>
+                <div class="cont">
+                  <p>Need Help? call us free</p>
+                  <span>321 325 5678</span>
+                </div>
+              </div>
+              <div class="button float-left">
+                {% if request.user.is_authenticated %}
+                <a class="main-btn text-light">Welcome... {{request.user}}</a>
+                {% else %}
+                <a href="/signup/" class="main-btn">Apply Now</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="search-box">
+      <div class="serach-form">
+        <div class="closebtn">
+          <span></span>
+          <span></span>
+        </div>
+        <form action="#">
+          <input type="text" name="search" placeholder="Search by keyword">
+          <button><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    {% block body %}
+    <div class="navigation">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-md-9 col-sm-9 col-8">
+            <nav class="navbar navbar-expand-lg">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="active" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/About/">About us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a>Courses</a>
+                    <ul class="sub-menu" style="width: max-content;">
+                      {% for i in Maincategory %}
+                      <li><a href="/courses/{{i.id}}" class="text-left" href="#">{{i.name}}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/event/">Events</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/teachers/">Our teachers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/blog/">Blog</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/contact/">Contact</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/exam/">Exam</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-1">
+            <div class="right-icon text-right">
+              <ul>
+                <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-2 col-sm-2 col-1">
+            <div class="pt-15">
+              <ul>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item mt-0">
+                  <a class="nav-link blue dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    {{request.user}}
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="row ml-2">
+                      <li><a class="dropdown-item" href="/profile/">Profile</a></li>
+                    </div>
+                    <div class="row ml-2">
+                      <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                    </div>
+                  </ul>
+                </li>
+                {% else %}
+                <li><a href="/login/" class="btn background text-light"  id="search" style="font-weight: 600;">Login</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <section id="slider-part" class="slider-active">
+    <div class="single-slider bg_cover pt-150" style="background-image: url('{%static 'images/slider/s-1.jpg' %}');"
+      data-overlay="4">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-7 col-lg-9">
+            <div class="slider-cont">
+              <h1 data-animation="bounceInLeft" data-delay="1s">Choose the right theme for education</h1>
+              <p data-animation="fadeInUp" data-delay="1.3s">Donec vitae sapien ut libearo venenatis faucibus. Nullam
+                quis ante. Etiam sit amet orci eget eros faucibus tincidunt Sed fringilla mauri amet nibh.</p>
+              <ul>
+                <li><a data-animation="fadeInUp" data-delay="1.6s" class="main-btn" href="#">Read More</a></li>
+                <li><a data-animation="fadeInUp" data-delay="1.9s" class="main-btn main-btn-2" href="#">Get Started</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- single slider -->
+
+    <div class="single-slider bg_cover pt-150" style="background-image: url('{%static 'images/slider/s-2.jpg' %}');"
+      data-overlay="4">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-7 col-lg-9">
+            <div class="slider-cont">
+              <h1 data-animation="bounceInLeft" data-delay="1s">Choose the right theme for education</h1>
+              <p data-animation="fadeInUp" data-delay="1.3s">Donec vitae sapien ut libearo venenatis faucibus. Nullam
+                quis ante. Etiam sit amet orci eget eros faucibus tincidunt Sed fringilla mauri amet nibh.</p>
+              <ul>
+                <li><a data-animation="fadeInUp" data-delay="1.6s" class="main-btn" href="#">Read More</a></li>
+                <li><a data-animation="fadeInUp" data-delay="1.9s" class="main-btn main-btn-2" href="#">Get Started</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- single slider -->
+
+    <div class="single-slider bg_cover pt-150" style="background-image: url('{%static 'images/slider/s-3.jpg' %}');"
+      data-overlay="4">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-7 col-lg-9">
+            <div class="slider-cont">
+              <h1 data-animation="bounceInLeft" data-delay="1s">Choose the right theme for education</h1>
+              <p data-animation="fadeInUp" data-delay="1.3s">Donec vitae sapien ut libearo venenatis faucibus. Nullam
+                quis ante. Etiam sit amet orci eget eros faucibus tincidunt Sed fringilla mauri amet nibh.</p>
+              <ul>
+                <li><a data-animation="fadeInUp" data-delay="1.6s" class="main-btn" href="#">Read More</a></li>
+                <li><a data-animation="fadeInUp" data-delay="1.9s" class="main-btn main-btn-2" href="#">Get Started</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- single slider -->
+  </section>
+
+
+
+  <section id="category-part">
+    <div class="container">
+      <div class="category pt-40 pb-80">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="category-text pt-40">
+              <h2>Best platform to learn everything</h2>
+            </div>
+          </div>
+          <div class="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-8 offset-2">
+            <div class="row category-slied mt-40">
+              <div class="col-lg-4">
+                <a href="#">
+                  <span class="singel-category text-center color-1">
+                    <span class="icon">
+                      <img src="{% static 'images/all-icon/ctg-1.png' %}" alt="Icon">
+                    </span>
+                    <span class="cont">
+                      <span>Language</span>
+                    </span>
+                  </span> <!-- singel category -->
+                </a>
+              </div>
+              <div class="col-lg-4">
+                <a href="#">
+                  <span class="singel-category text-center color-2">
+                    <span class="icon">
+                      <img src="{% static 'images/all-icon/ctg-2.png' %}" alt="Icon">
+                    </span>
+                    <span class="cont">
+                      <span>Business</span>
+                    </span>
+                  </span> <!-- singel category -->
+                </a>
+              </div>
+              <div class="col-lg-4">
+                <a href="#">
+                  <span class="singel-category text-center color-3">
+                    <span class="icon">
+                      <img src="{% static 'images/all-icon/ctg-3.png' %}" alt="Icon">
+                    </span>
+                    <span class="cont">
+                      <span>Literature</span>
+                    </span>
+                  </span> <!-- singel category -->
+                </a>
+              </div>
+              <div class="col-lg-4">
+                <a href="#">
+                  <span class="singel-category text-center color-1">
+                    <span class="icon">
+                      <img src="{% static 'images/all-icon/ctg-1.png' %}" alt="Icon">
+                    </span>
+                    <span class="cont">
+                      <span>Language</span>
+                    </span>
+                  </span> <!-- singel category -->
+                </a>
+              </div>
+              <div class="col-lg-4">
+                <a href="#">
+                  <span class="singel-category text-center color-2">
+                    <span class="icon">
+                      <img src="{% static 'images/all-icon/ctg-2.png' %}" alt="Icon">
+                    </span>
+                    <span class="cont">
+                      <span>Business</span>
+                    </span>
+                  </span> <!-- singel category -->
+                </a>
+              </div>
+              <div class="col-lg-4">
+                <a href="#">
+                  <span class="singel-category text-center color-3">
+                    <span class="icon">
+                      <img src="{% static 'images/all-icon/ctg-3.png' %}" alt="Icon">
+                    </span>
+                    <span class="cont">
+                      <span>Literature</span>
+                    </span>
+                  </span> <!-- singel category -->
+                </a>
+              </div>
+            </div> <!-- category slied -->
+          </div>
+        </div> <!-- row -->
+      </div> <!-- category -->
+    </div> <!-- container -->
+  </section>
+
+  <!--====== CATEGORY PART ENDS ======-->
+
+  <!--====== ABOUT PART START ======-->
+
+  <section id="about-part" class="pt-65">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="section-title mt-50">
+            <h5>About us</h5>
+            <h2>Welcome to NNU </h2>
+          </div> <!-- section title -->
+          <div class="about-cont">
+            <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat
+              ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet . Morbi accumsan ipsum
+              velit. Nam nec tellus a odio tincidunt mauris. <br> <br> auci elit cons equat ipsutis sem nibh id elit.
+              Duis sed odio sit amet nibh vulputate cursus a sit amet . Morbi accumsan ipsum velit. Nam nec tellus a
+              odio tincidunt mauris</p>
+            <a href="/About/" class="main-btn mt-55">Learn More</a>
+          </div>
+        </div> <!-- about cont -->
+        <div class="col-lg-6 offset-lg-1">
+          <div class="about-event mt-50">
+            <div class="event-title">
+              <h3>Upcoming events</h3>
+            </div> <!-- event title -->
+            <ul>
+              <li>
+                <div class="singel-event">
+                  <span><i class="fa fa-calendar"></i> 2 December 2018</span>
+                  <a href="#">
+                    <h4>Campus clean workshop</h4>
+                  </a>
+                  <span><i class="fa fa-clock-o"></i> 10:00 Am - 3:00 Pm</span>
+                  <span><i class="fa fa-map-marker"></i> Rc Auditorim</span>
+                </div>
+              </li>
+              <li>
+                <div class="singel-event">
+                  <span><i class="fa fa-calendar"></i> 2 December 2018</span>
+                  <a href="#">
+                    <h4>Tech Summit</h4>
+                  </a>
+                  <span><i class="fa fa-clock-o"></i> 10:00 Am - 3:00 Pm</span>
+                  <span><i class="fa fa-map-marker"></i> Rc Auditorim</span>
+                </div>
+              </li>
+              <li>
+                <div class="singel-event">
+                  <span><i class="fa fa-calendar"></i> 2 December 2018</span>
+                  <a href="#">
+                    <h4>Enviroement conference</h4>
+                  </a>
+                  <span><i class="fa fa-clock-o"></i> 10:00 Am - 3:00 Pm</span>
+                  <span><i class="fa fa-map-marker"></i> Rc Auditorim</span>
+                </div>
+              </li>
+            </ul>
+          </div> <!-- about event -->
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+    <div class="about-bg">
+      <img src="{% static 'images/about/bg-1.png' %}" alt="About">
+    </div>
+  </section>
+
+  <!--====== ABOUT PART ENDS ======-->
+
+  <!--====== APPLY PART START ======-->
+
+  <section id="apply-aprt" class="pb-120">
+    <div class="container">
+      <div class="apply">
+        <div class="row no-gutters">
+          <div class="col-lg-6">
+            <div class="apply-cont apply-color-1">
+              <h3>Apply for fall 2019</h3>
+              <p>Gravida nibh vel velit auctor aliquetn sollicitudirem sem quibibendum auci elit cons equat ipsutis sem
+                nibh id elituis sed odio sit amet nibh vulputate cursus equat ipsutis.</p>
+              <a href="#" class="main-btn">Apply Now</a>
+            </div> <!-- apply cont -->
+          </div>
+          <div class="col-lg-6">
+            <div class="apply-cont apply-color-2">
+              <h3>Apply for scholarship</h3>
+              <p>Gravida nibh vel velit auctor aliquetn sollicitudirem sem quibibendum auci elit cons equat ipsutis sem
+                nibh id elituis sed odio sit amet nibh vulputate cursus equat ipsutis.</p>
+              <a href="#" class="main-btn">Apply Now</a>
+            </div> <!-- apply cont -->
+          </div>
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </section>
+
+  <!--====== APPLY PART ENDS ======-->
+
+  <!--====== COURSE PART START ======-->
+
+  <section id="course-part" class="pt-115 pb-120 gray-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+            <h5>Our course</h5>
+            <h2>Featured courses </h2>
+          </div> <!-- section title -->
+        </div>
+      </div> <!-- row -->
+      <div class="row course-slied mt-30">
+        <div class="col-lg-4">
+          <div class="singel-course">
+            <div class="thum">
+              <div class="image">
+                <img src="{% static 'images/course/cu-1.jpg' %}" alt="Course">
+              </div>
+              <div class="price">
+                <span>Free</span>
+              </div>
+            </div>
+            <div class="cont">
+              <ul>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <span>(20 Reviws)</span>
+              <a href="courses-singel.html">
+                <h4>Learn basis javascirpt from start for beginner</h4>
+              </a>
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="#"><img src="{% static 'images/course/teacher/t-1.jpg' %}" alt="teacher"></a>
+                </div>
+                <div class="name">
+                  <a href="#">
+                    <h6>Mark anthem</h6>
+                  </a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
+                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div> <!-- singel course -->
+        </div>
+        <div class="col-lg-4">
+          <div class="singel-course">
+            <div class="thum">
+              <div class="image">
+                <img src="{% static 'images/course/cu-2.jpg' %}" alt="Course">
+              </div>
+              <div class="price">
+                <span>Free</span>
+              </div>
+            </div>
+            <div class="cont">
+              <ul>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <span>(20 Reviws)</span>
+              <a href="courses-singel.html">
+                <h4>Learn basis javascirpt from start for beginner</h4>
+              </a>
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="#"><img src="{% static 'images/course/teacher/t-2.jpg' %}" alt="teacher"></a>
+                </div>
+                <div class="name">
+                  <a href="#">
+                    <h6>Mark anthem</h6>
+                  </a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
+                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div> <!-- singel course -->
+        </div>
+        <div class="col-lg-4">
+          <div class="singel-course">
+            <div class="thum">
+              <div class="image">
+                <img src="{% static 'images/course/cu-3.jpg' %}" alt="Course">
+              </div>
+              <div class="price">
+                <span>Free</span>
+              </div>
+            </div>
+            <div class="cont">
+              <ul>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <span>(20 Reviws)</span>
+              <a href="#">
+                <h4>Learn basis javascirpt from start for beginner</h4>
+              </a>
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="#"><img src="{% static 'images/course/teacher/t-3.jpg' %}" alt="teacher"></a>
+                </div>
+                <div class="name">
+                  <a href="#">
+                    <h6>Mark anthem</h6>
+                  </a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
+                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div> <!-- singel course -->
+        </div>
+        <div class="col-lg-4">
+          <div class="singel-course">
+            <div class="thum">
+              <div class="image">
+                <img src="{% static 'images/course/cu-4.jpg' %}" alt="Course">
+              </div>
+              <div class="price">
+                <span>Free</span>
+              </div>
+            </div>
+            <div class="cont">
+              <ul>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <span>(20 Reviws)</span>
+              <a href="courses-singel.html">
+                <h4>Learn basis javascirpt from start for beginner</h4>
+              </a>
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="#"><img src="{% static 'images/course/teacher/t-4.jpg' %}" alt="teacher"></a>
+                </div>
+                <div class="name">
+                  <a href="#">
+                    <h6>Mark anthem</h6>
+                  </a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
+                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div> <!-- singel course -->
+        </div>
+        <div class="col-lg-4">
+          <div class="singel-course">
+            <div class="thum">
+              <div class="image">
+                <img src="{% static 'images/course/cu-5.jpg' %}" alt="Course">
+              </div>
+              <div class="price">
+                <span>Free</span>
+              </div>
+            </div>
+            <div class="cont">
+              <ul>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+              <span>(20 Reviws)</span>
+              <a href="courses-singel.html">
+                <h4>Learn basis javascirpt from start for beginner</h4>
+              </a>
+              <div class="course-teacher">
+                <div class="thum">
+                  <a href="#"><img src="{% static 'images/course/teacher/t-5.jpg' %}" alt="teacher"></a>
+                </div>
+                <div class="name">
+                  <a href="#">
+                    <h6>Mark anthem</h6>
+                  </a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-user"></i><span>31</span></a></li>
+                    <li><a href="#"><i class="fa fa-heart"></i><span>10</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div> <!-- singel course -->
+        </div>
+      </div> <!-- course slied -->
+    </div> <!-- container -->
+  </section>
+  <section id="course-part" class="pt-115 pb-120 gray-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-title pb-45">
+            <h5>Our Videos</h5>
+            <h2> Our Latest Videos </h2>
+          </div>
+        </div>
+      </div>
+      <div class="row course-slied mt-30">
+        {% for i in Videos %}
+        <div class="col-lg-4">
+          <div class="singel-course">
+            <div class="thum">
+              <div class="image">
+                {% if i.video %}
+                <a href="/singlevideo/{{i.id}}"><video src="{{i.video.url}}" style="width: 100%; height: 211px"
+                    class="card-img-top" alt="..."></a>
+                {% else %}
+                <a href="/singlevideo/{{i.id}}"><video src="{% static 'images/noimagep.png' %}" height="300px"
+                    width="300px"></a>
+                {% endif %}
+              </div>
+            </div>
+            <div class="row pl-3">
+              <div class="col-4">
+                <p class=" text-success text-center card-title"
+                  style="border: 1px solid black;border-radius: 5px; font-weight:400;">{{i.subcategory}}</p>
+              </div>
+              <div class="col-8">
+                <p class=" orange text-uppercase card-title w-100">{{i.maincategory}}</p>
+              </div>
+            </div>
+            <div class="cont">
+              <a href="#">
+                <h4>{{i.name}}</h4>
+              </a>
+              <div class="course-teacher">
+                <div class="thum">
+                  {% if User.pic %}
+                  <a href="#"><img src="{{User.pic.url}}" alt="teacher"></a>
+                  {% else %}
+                  <img src="{% static 'images/noimage.jpg' %}" class="w-100">
+                  {% endif %}
+                </div>
+                <div class="name">
+                  <a href="#">
+                    <h6>{{i.admin}}</h6>
+                  </a>
+                </div>
+                <div class="admin">
+                  <ul>
+                    <li><a href="/singlevideo/{{i.id}}" class="btn background text-light ">Read More</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!--====== COURSE PART ENDS ======-->
+
+  <!--====== VIDEO FEATURE PART START ======-->
+
+  <section id="video-feature" class="bg_cover pt-60 pb-110" style="background-image: url('{%static 'images/bg-1.jpg' %}');">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-last order-lg-first">
+          <div class="video text-lg-left text-center pt-50">
+            <a class="Video-popup" href="https://www.youtube.com/watch?v=bRRtdzJH1oE"><i class="fa fa-play"></i></a>
+          </div> <!-- row -->
+        </div>
+        <div class="col-lg-5 offset-lg-1 order-first order-lg-last">
+          <div class="feature pt-50">
+            <div class="feature-title">
+              <h3>Our Facilities</h3>
+            </div>
+            <ul>
+              <li>
+                <div class="singel-feature">
+                  <div class="icon">
+                    <img src="{% static 'images/all-icon/f-1.png' %}" alt="icon">
+                  </div>
+                  <div class="cont">
+                    <h4>Global Certificate</h4>
+                    <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem
+                      nibhutis.</p>
+                  </div>
+                </div> <!-- singel feature -->
+              </li>
+              <li>
+                <div class="singel-feature">
+                  <div class="icon">
+                    <img src="{% static 'images/all-icon/f-2.png' %}" alt="icon">
+                  </div>
+                  <div class="cont">
+                    <h4>Alumni Support</h4>
+                    <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem
+                      nibhutis.</p>
+                  </div>
+                </div> <!-- singel feature -->
+              </li>
+              <li>
+                <div class="singel-feature">
+                  <div class="icon">
+                    <img src="{% static 'images/all-icon/f-3.png' %}" alt="icon">
+                  </div>
+                  <div class="cont">
+                    <h4>Books & Library</h4>
+                    <p>Gravida nibh vel velit auctor aliquetn auci elit cons solliazcitudirem sem quibibendum sem
+                      nibhutis.</p>
+                  </div>
+                </div> <!-- singel feature -->
+              </li>
+            </ul>
+          </div> <!-- feature -->
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+    <div class="feature-bg"></div> <!-- feature bg -->
+  </section>
+
+  <!--====== VIDEO FEATURE PART ENDS ======-->
+
+  <!--====== TEACHERS PART START ======-->
+
+  <section id="teachers-part" class="pt-70 pb-120">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="section-title mt-50">
+            <h5>Featured Teachers</h5>
+            <h2>Meet Our teachers</h2>
+          </div> <!-- section title -->
+          <div class="teachers-cont">
+            <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat
+              ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet . Morbi accumsan ipsum
+              velit. Nam nec tellus a odio tincidunt mauris. <br> <br> auci elit cons equat ipsutis sem nibh id elit.
+              Duis sed odio sit amet nibh vulputate cursus a sit amet . Morbi accumsan ipsum velit. Nam nec tellus a
+              odio tincidunt mauris</p>
+            <a href="#" class="main-btn mt-55">Career with us</a>
+          </div> <!-- teachers cont -->
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <div class="teachers mt-20">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="singel-teachers mt-30 text-center">
+                  <div class="image">
+                    <img src="{% static 'images/teachers/t-1.jpg' %}" alt="Teachers">
+                  </div>
+                  <div class="cont">
+                    <a href="teachers-singel.html">
+                      <h6>Mark alen</h6>
+                    </a>
+                    <span>Vice chencelor</span>
+                  </div>
+                </div> <!-- singel teachers -->
+              </div>
+              <div class="col-sm-6">
+                <div class="singel-teachers mt-30 text-center">
+                  <div class="image">
+                    <img src="{% static 'images/teachers/t-2.jpg' %}" alt="Teachers">
+                  </div>
+                  <div class="cont">
+                    <a href="teachers-singel.html">
+                      <h6>David card</h6>
+                    </a>
+                    <span>Pro chencelor</span>
+                  </div>
+                </div> <!-- singel teachers -->
+              </div>
+              <div class="col-sm-6">
+                <div class="singel-teachers mt-30 text-center">
+                  <div class="image">
+                    <img src="{% static 'images/teachers/t-3.jpg' %}" alt="Teachers">
+                  </div>
+                  <div class="cont">
+                    <a href="teachers-singel.html">
+                      <h6>Rebeka alig</h6>
+                    </a>
+                    <span>Pro chencelor</span>
+                  </div>
+                </div> <!-- singel teachers -->
+              </div>
+              <div class="col-sm-6">
+                <div class="singel-teachers mt-30 text-center">
+                  <div class="image">
+                    <img src="{% static 'images/teachers/t-4.jpg' %}" alt="Teachers">
+                  </div>
+                  <div class="cont">
+                    <a href="teachers-singel.html">
+                      <h6>Hanna bein</h6>
+                    </a>
+                    <span>Aerobics head</span>
+                  </div>
+                </div> <!-- singel teachers -->
+              </div>
+            </div> <!-- row -->
+          </div> <!-- teachers -->
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </section>
+
+  <section id="testimonial" class="bg_cover pt-115 pb-115" data-overlay="8"
+    style="background-image: url('{%static 'images/bg-2.jpg' %}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-title pb-40">
+            <h5>Testimonial</h5>
+            <h2>What they say</h2>
+          </div> <!-- section title -->
+        </div>
+      </div> <!-- row -->
+      <div class="row testimonial-slied mt-40">
+        <div class="col-lg-6">
+          <div class="singel-testimonial">
+            <div class="testimonial-thum">
+              <img src="{% static 'images/testimonial/t-1.jpg' %}" alt="Testimonial">
+              <div class="quote">
+                <i class="fa fa-quote-right"></i>
+              </div>
+            </div>
+            <div class="testimonial-cont">
+              <p>Aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit
+                amet sem nibh id elit sollicitudirem </p>
+              <h6>Rubina Helen</h6>
+              <span>Bsc, Engineering</span>
+            </div>
+          </div> <!-- singel testimonial -->
+        </div>
+        <div class="col-lg-6">
+          <div class="singel-testimonial">
+            <div class="testimonial-thum">
+              <img src="{% static 'images/testimonial/t-2.jpg' %}" alt="Testimonial">
+              <div class="quote">
+                <i class="fa fa-quote-right"></i>
+              </div>
+            </div>
+            <div class="testimonial-cont">
+              <p>Aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit
+                amet sem nibh id elit sollicitudirem </p>
+              <h6>Rubina Helen</h6>
+              <span>Bsc, Engineering</span>
+            </div>
+          </div> <!-- singel testimonial -->
+        </div>
+        <div class="col-lg-6">
+          <div class="singel-testimonial">
+            <div class="testimonial-thum">
+              <img src="{% static 'images/testimonial/t-3.jpg' %}" alt="Testimonial">
+              <div class="quote">
+                <i class="fa fa-quote-right"></i>
+              </div>
+            </div>
+            <div class="testimonial-cont">
+              <p>Aliquetn sollicitudirem quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis sed odio sit
+                amet sem nibh id elit sollicitudirem </p>
+              <h6>Rubina Helen</h6>
+              <span>Bsc, Engineering</span>
+            </div>
+          </div> <!-- singel testimonial -->
+        </div>
+      </div> <!-- testimonial slied -->
+    </div> <!-- container -->
+  </section>
+
+  <!--====== TEASTIMONIAL PART ENDS ======-->
+
+  <!--====== NEWS PART START ======-->
+
+  <section id="news-part" class="pt-115 pb-110">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-title pb-50">
+            <h5>Latest News</h5>
+            <h2>From the news</h2>
+          </div> <!-- section title -->
+        </div>
+      </div> <!-- row -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="singel-news mt-30">
+            <div class="news-thum pb-25">
+              <img src="{% static 'images/news/n-1.jpg' %}" alt="News">
+            </div>
+            <div class="news-cont">
+              <ul>
+                <li><a href="#"><i class="fa fa-calendar"></i>2 December 2018 </a></li>
+                <li><a href="#"> <span>By</span> Adam linn</a></li>
+              </ul>
+              <a href="blog-singel.html">
+                <h3>Tips to grade high cgpa in university life</h3>
+              </a>
+              <p>Lorem ipsum gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons equat
+                ipsutis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan
+                ipsum velit. Nam nec tellus a odio tincidunt .</p>
+            </div>
+          </div> <!-- singel news -->
+        </div>
+        <div class="col-lg-6">
+          <div class="singel-news news-list">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="news-thum mt-30">
+                  <img src="{% static 'images/news/n-1.jpg' %}" alt="News">
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="news-cont mt-30">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-calendar"></i>2 December 2018 </a></li>
+                    <li><a href="#"> <span>By</span> Adam linn</a></li>
+                  </ul>
+                  <a href="blog-singel.html">
+                    <h3>Intellectual communication</h3>
+                  </a>
+                  <p>Gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons vel.</p>
+                </div>
+              </div>
+            </div> <!-- row -->
+          </div> <!-- singel news -->
+          <div class="singel-news news-list">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="news-thum mt-30">
+                  <img src="{% static 'images/news/ns-2.jpg' %}" alt="News">
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="news-cont mt-30">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-calendar"></i>2 December 2018 </a></li>
+                    <li><a href="#"> <span>By</span> Adam linn</a></li>
+                  </ul>
+                  <a href="blog-singel.html">
+                    <h3>Study makes you perfect</h3>
+                  </a>
+                  <p>Gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons vel.</p>
+                </div>
+              </div>
+            </div> <!-- row -->
+          </div> <!-- singel news -->
+          <div class="singel-news news-list">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="news-thum mt-30">
+                  <img src="{% static 'images/news/ns-3.jpg' %}" alt="News">
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="news-cont mt-30">
+                  <ul>
+                    <li><a href="#"><i class="fa fa-calendar"></i>2 December 2018 </a></li>
+                    <li><a href="#"> <span>By</span> Adam linn</a></li>
+                  </ul>
+                  <a href="blog-singel.html">
+                    <h3>Technology edcution is now....</h3>
+                  </a>
+                  <p>Gravida nibh vel velit auctor aliquetn sollicitudirem quibibendum auci elit cons vel.</p>
+                </div>
+              </div>
+            </div> <!-- row -->
+          </div> <!-- singel news -->
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </section>
+
+  <!--====== NEWS PART ENDS ======-->
+
+  <!--====== PATNAR LOGO PART START ======-->
+
+  <div id="patnar-logo" class="pt-40 pb-80 gray-bg">
+    <div class="container">
+      <div class="row patnar-slied">
+        <div class="col-lg-12">
+          <div class="singel-patnar text-center mt-40">
+            <img src="{% static 'images/patnar-logo/p-1.png' %}" alt="Logo">
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="singel-patnar text-center mt-40">
+            <img src="{% static 'images/patnar-logo/p-2.png' %}" alt="Logo">
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="singel-patnar text-center mt-40">
+            <img src="{% static 'images/patnar-logo/p-3.png' %}" alt="Logo">
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="singel-patnar text-center mt-40">
+            <img src="{% static 'images/patnar-logo/p-4.png' %}" alt="Logo">
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="singel-patnar text-center mt-40">
+            <img src="{% static 'images/patnar-logo/p-2.png' %}" alt="Logo">
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="singel-patnar text-center mt-40">
+            <img src="{% static 'images/patnar-logo/p-3.png' %}" alt="Logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+  <footer class="background pt-5 text-light text-center">
+    <div class="row">
+      <div class="col-md-3 col-sm-12 col-12">
+      </div>
+      <div class="col-md-6 col-sm-12 col-12">
+        <label for="email" class="form-label fs-5">Email address</label>
+        <form action="/" method="post">
+          {% csrf_token %}
+          <div class="input-group mb-3 mt-1 pl-3">
+            <input type="email" name="email" class="form-control" placeholder="Enter Your Email To Subscribe" required>
+            <button class="btn mx-3 btn-outline-light" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3 col-sm-12 col-12">
+      </div>
+    </div>
+  </footer>
+  <footer id="footer-part">
+    <div class="footer-top pt-40 pb-70">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-about mt-40">
+              <div class="logo">
+                <h2 class=" orange font-weight-bolder">NNU University</h2>
+              </div>
+              <p>Gravida nibh vel velit auctor aliquetn quibibendum auci elit cons equat ipsutis sem nibh id elit. Duis
+                sed odio sit amet nibh vulputate.</p>
+              <ul class="mt-20">
+                <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+              </ul>
+            </div> <!-- footer about -->
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="footer-link mt-40">
+              <div class="footer-title pb-25">
+                <h6>Sitemap</h6>
+              </div>
+              <ul>
+                <li><a href="/"><i class="fa fa-angle-right"></i>Home</a></li>
+                <li><a href="/About/"><i class="fa fa-angle-right"></i>About us</a></li>
+                <li><a href="/courses/"><i class="fa fa-angle-right"></i>Courses</a></li>
+                <li><a href="/blog/"><i class="fa fa-angle-right"></i>News</a></li>
+                <li><a href="/event/"><i class="fa fa-angle-right"></i>Event</a></li>
+              </ul>
+              <ul>
+                <li><a href="#"><i class="fa fa-angle-right"></i>Gallery</a></li>
+                <li><a href="/exam/"><i class="fa fa-angle-right"></i>Exam</a></li>
+                <li><a href="/teachers/"><i class="fa fa-angle-right"></i>Teachers</a></li>
+                <li><a href="#"><i class="fa fa-angle-right"></i>Support</a></li>
+                <li><a href="/contact/"><i class="fa fa-angle-right"></i>Contact</a></li>
+              </ul>
+            </div> <!-- footer link -->
+          </div>
+          <div class="col-lg-2 col-md-6 col-sm-6">
+            <div class="footer-link support mt-40">
+              <div class="footer-title pb-25">
+                <h6>Support</h6>
+              </div>
+              <ul>
+                <li><a href="#"><i class="fa fa-angle-right"></i>FAQS</a></li>
+                <li><a href="#"><i class="fa fa-angle-right"></i>Privacy</a></li>
+                <li><a href="#"><i class="fa fa-angle-right"></i>Policy</a></li>
+                <li><a href="#"><i class="fa fa-angle-right"></i>Support</a></li>
+                <li><a href="#"><i class="fa fa-angle-right"></i>Documentation</a></li>
+              </ul>
+            </div> <!-- support -->
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-address mt-40">
+              <div class="footer-title pb-25">
+                <h6>Contact Us</h6>
+              </div>
+              <ul>
+                <li>
+                  <div class="icon">
+                    <i class="fa fa-home"></i>
+                  </div>
+                  <div class="cont">
+                    <p>143 castle road 517 district, kiyev port south Canada</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="icon">
+                    <i class="fa fa-phone"></i>
+                  </div>
+                  <div class="cont">
+                    <p>+3 123 456 789</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="icon">
+                    <i class="fa fa-envelope-o"></i>
+                  </div>
+                  <div class="cont">
+                    <p>info@yourmail.com</p>
+                  </div>
+                </li>
+              </ul>
+            </div> <!-- footer address -->
+          </div>
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- footer top -->
+
+    <div class="footer-copyright pt-10 pb-25">
+      <div class="container">
+        <div class="row">
+          <div class="copyright text-md-center text-center pt-15">
+            <p><a target="_blank">@NNU University.com</a> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!--====== FOOTER PART ENDS ======-->
+
+  <!--====== BACK TO TP PART START ======-->
+
+  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+  <script src="{% static 'js/vendor/modernizr-3.6.0.min.js' %}"></script>
+  <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/slick.min.js' %}"></script>
+  <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{% static 'js/waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+  <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'js/jquery.nice-number.min.js' %}"></script>
+  <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'js/validator.min.js' %}"></script>
+  <script src="{% static 'js/ajax-contact.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+  <script src="{% static 'js/map-script.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

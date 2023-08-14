@@ -1,0 +1,186 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>NNU Digital University  | Admin Profile Page</title>
+{% endblock %}
+
+{% block body %}
+<div class="navigation">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+          <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="active" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/About/">About us</a>
+                </li>
+                <li class="nav-item">
+                  <a>Courses</a>
+                  <ul class="sub-menu" style="width: max-content;">
+                    {% for i in Maincategory %}
+                    <li><a href="/courses/{{i.id}}" class="text-left" href="#">{{i.name}}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a href="/event/">Events</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/teachers/">Our teachers</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/blog/">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/contact/">Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/exam/">Exam</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="col-1">
+          <div class="right-icon text-right">
+            <ul>
+              <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="pt-15">
+            <ul>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item mt-0">
+                <a class="nav-link blue dropdown-toggle font-weight-bold" href="#" id="navbarDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  {{request.user}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div class="row ml-2">
+                    <li><a class="dropdown-item" href="/profile/">Profile</a></li>
+                  </div>
+                  <div class="row ml-2">
+                    <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                  </div>
+                </ul>
+              </li>
+              {% else %}
+              <li><a href="/login/" class="btn background text-light" id="search" style="font-weight: 600;">Login</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid mb-2 mt-3">
+    <div class="row">
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-1">
+            {% if User.pic %}
+            <img src="{{User.pic.url}}" class="w-100" style="height: 650px;">
+            {% else %}
+            <img src="{% static 'images/noimage.jpg' %}" class="w-100">
+            {% endif %}
+        </div>
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <h3 class="background text-light text-center p-2 mt-1">Admin Profile Section</h3>
+            <table class="table table-light table-striped table-hover">
+                <tr>
+                    <th>Name :-</th>
+                    <td>{{User.name}}</td>
+                </tr>
+                <tr>
+                    <th>Username :-</th>
+                    <td>{{User.username}}</td>
+                </tr>
+                <tr>
+                    <th>Email :-</th>
+                    <td>{{User.email}}</td>
+                </tr>
+                <tr>
+                    <th>Phone :-</th>
+                    <td>{{User.phone}}</td>
+                </tr>
+                <tr>
+                    <th>House Number :-</th>
+                    <td>{{User.addressline1}}</td>
+                </tr>
+                <tr>
+                    <th>Street Number :-</th>
+                    <td>{{User.addressline2}}</td>
+                </tr>
+                <tr>
+                    <th>Locality :-</th>
+                    <td>{{User.addressline3}}</td>
+                </tr>
+                <tr>
+                    <th>Pin Code :-</th>
+                    <td>{{User.pin}}</td>
+                </tr>
+                <tr>
+                    <th>City :-</th>
+                    <td>{{User.city}}</td>
+                </tr>
+                <tr>
+                    <th>State :-</th>
+                    <td>{{User.state}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2"><a href="/updateprofile/" class="btn background text-light w-100">Update Profile</a></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<h4 class="background text-light p-2 text-center mt-1">Video Section <a href="/addvideo/" class="text-light"><i class="fa fa-plus"></i></a></h4>
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-light">
+        <tr>
+            <th></th>
+            <th>Video Name</th>
+            <th>maincategory</th>
+            <th>subcategory</th>
+            <th>description</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for i in Videos %}
+        <tr>
+            {% if i.video %}
+            <td><video src="{{i.video.url}}" height="100px" width="100px" class="rounded "></td>
+            {% else %}
+            <td><video src="{% static 'images/noimagep.png' %}" height="100px" width="100px"></td>
+            {% endif %}
+            <td>{{i.name}}</td>
+            <td>{{i.maincategory}}</td>
+            <td>{{i.subcategory}}</td>
+            <td>{{i.description}}</td>
+            <td><a href="/editvideo/{{i.id}}/" class="btn text-primary"><i class="material-icons">edit</i></a></td>
+            <td><button  class="btn text-primary" onclick="fun('{{i.id}}')"><i class="material-icons">delete_forever</i></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<script>
+    function fun(num){
+        if(confirm("Are you sure! You Want to Delete that Item"))
+        window.open(`/deletevideo/${num}`)
+    }
+</script>
+{% endblock %}
